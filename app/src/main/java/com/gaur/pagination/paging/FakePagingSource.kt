@@ -18,7 +18,6 @@ class FakePagingSource @Inject constructor(private val apiService: ApiService)  
      return   try{
             val prev = params.key?:0
             val response = apiService.getFakeResponse(page=prev,size=params.loadSize)
-         Log.d("TAG", "load: $response")
             if(response.isSuccessful){
                 val body = response.body()?.data
                 LoadResult.Page(
@@ -30,13 +29,9 @@ class FakePagingSource @Inject constructor(private val apiService: ApiService)  
             }else{
                 LoadResult.Error(Exception())
             }
-
-
         }catch (e:Exception){
          Log.d("TAG", "load: ${e.printStackTrace()}")
             LoadResult.Error(e)
         }
-
-
     }
 }

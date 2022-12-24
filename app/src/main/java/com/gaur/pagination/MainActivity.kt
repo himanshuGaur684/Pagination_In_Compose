@@ -1,11 +1,13 @@
 package com.gaur.pagination
 
 import android.os.Bundle
+import android.view.Surface
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -32,8 +34,7 @@ class MainActivity : ComponentActivity() {
             PaginationTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
+                    modifier = Modifier.fillMaxSize()
                 ) {
 
                     HomeScreen()
@@ -108,28 +109,23 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
                 }
             }
         }
-
     }
-
-
 }
 
 @Composable
 fun FakeItem(item: Data) {
     Column(modifier = Modifier.padding(8.dp)) {
-
         Text(
-            text = item.airline?.get(0)?.country, style = TextStyle(
+            text = item.airline[0].country, style = TextStyle(
                 color = Color.Black, fontWeight = FontWeight.ExtraBold, fontSize = 18.sp,
             ), modifier = Modifier.padding(8.dp)
         )
 
         Text(
             modifier = Modifier.padding(8.dp),
-            text = item.airline?.get(0)?.slogan!!,
+            text = item.airline[0].slogan,
             style = TextStyle(color = Color.Black, fontWeight = FontWeight.Medium, fontSize = 16.sp)
         )
-
         Divider()
 
     }
